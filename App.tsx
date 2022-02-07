@@ -1,9 +1,16 @@
 import React, { useState } from "react";
-import { FlatList, StyleSheet, View, Alert } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AddTodo from "./components/AddTodo";
-import { MemoizeTodoItem } from "./components/TodoItem";
+import { MemoizeTodoItem, TodoItem } from "./components/TodoItem";
 import { Todo } from "./Interface";
 
 export default function App() {
@@ -28,21 +35,23 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        <View style={{ height: "auto", marginHorizontal: 50 }}>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        <Header />
+        <View style={styles.content}>
           <AddTodo submitHandler={submitHandler} />
-          <FlatList
-            data={todos}
-            renderItem={({ item }) => (
-              <MemoizeTodoItem item={item} pressHandler={pressHandler} />
-            )}
-          />
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({ item }) => (
+                <MemoizeTodoItem item={item} pressHandler={pressHandler} />
+              )}
+            />
+          </View>
         </View>
+        <Footer />
       </View>
-      <Footer />
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -53,10 +62,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#f8f8f2",
     flex: 1,
     justifyContent: "center",
+    paddingHorizontal: 50,
+    paddingTop: 50,
   },
   container: {
     flex: 1,
     backgroundColor: "#282a36",
     color: "white",
+  },
+  list: {
+    flex: 1,
   },
 });

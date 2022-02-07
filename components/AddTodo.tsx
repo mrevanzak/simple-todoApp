@@ -20,7 +20,7 @@ export default function AddTodo({ submitHandler }: Props) {
   };
 
   return (
-    <View style={{ marginVertical: 5 }}>
+    <View style={{ marginVertical: 5, flex: 1, justifyContent: "flex-end" }}>
       <TextInput
         placeholder="What do you want to do today? ..."
         onChangeText={changeHandler}
