@@ -10,24 +10,11 @@ import {
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import AddTodo from "./components/AddTodo";
-import { MemoizeTodoItem, TodoItem } from "./components/TodoItem";
+import { MemoizeTodoItem } from "./components/TodoItem";
 import { Todo } from "./Interface";
 
 export default function App() {
-  // const [todos, setTodos] = useState<Todo[]>([]);
-  const [todos, setTodos] = useState([
-    { key: "1", text: "Learn React Native" },
-    { key: "2", text: "Learn React" },
-    { key: "3", text: "Learn TypeScript" },
-    { key: "4", text: "Learn Redux" },
-    { key: "5", text: "Learn GraphQL" },
-    { key: "6", text: "Learn Apollo" },
-    { key: "7", text: "Learn Next.js" },
-    { key: "8", text: "Learn React Hooks" },
-    { key: "9", text: "Learn React Native Hooks" },
-    { key: "10", text: "Learn React Native Navigation" },
-    { key: "11", text: "Learn React Native Animations" },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const pressHandler = (key: string): void => {
     setTodos((prevTodos) => {
